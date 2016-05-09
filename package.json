@@ -1,0 +1,33 @@
+{
+  "name": "shadow-node",
+  "version": "1.0.0",
+  "description": "module to shadow ban users for a certain amount of time by redirecting all traffic to your shadow site",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reidwmulkey/shadow-node.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "redis",
+    "shadow ban"
+  ],
+  "author": "reidwmulkey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reidwmulkey/shadow-node/issues"
+  },
+  "homepage": "https://github.com/reidwmulkey/shadow-node#readme",
+  "devDependencies": {
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "q": "^1.4.1",
+    "redis": "^2.6.0-2"
+  }
+}
