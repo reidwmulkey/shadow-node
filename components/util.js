@@ -8,8 +8,8 @@ module.exports = function(port, host){
   module.banUser = function(duration, ip){
     var deferred = q.defer();
     if(!ip) ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'] : req.connection.remoteAddress;
-    var key = 'shadow-node-' + ip;
     if(!duration) duration = 3600;
+    var key = 'shadow-node-' + ip;
     client.get(key, function(err, val){
       if(err) deferred.reject(err);
       else if(val){
@@ -33,7 +33,6 @@ module.exports = function(port, host){
     var deferred = q.defer();
     var ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'] : req.connection.remoteAddress;
     var key = 'shadow-node-' + ip;
-    console.log(key);
     client.get(key, function(err, val){
       if(err) deferred.reject(err);
       else {

@@ -1,18 +1,17 @@
 var express = require('express');
 var utils;
 
-module.exports = function(util, fakeRouter){
+module.exports = function(util, shadowRouter){
   var app = express();
   utils = util;
 
-  app.all('*', isBannedMiddleware, fakeRouter, function(req, res, next){
+  app.all('*', isBannedMiddleware, shadowRouter, function(req, res, next){
     next();
   });
 
   function isBannedMiddleware( req, res, next ) {
     utils.isBanned(req)
     .then(function(isBanned){
-      console.log("isBanned", isBanned);
       if(isBanned){
         next();
       }
