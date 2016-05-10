@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
-var fakeRouter = require('./fakeRouter');
-var shadow = require('../')(6379, 'localhost', fakeRouter);
+var shadowRouter = require('./shadowRouter');
+var shadow = require('../')(6379, 'localhost', shadowRouter);
 
 module.exports = function(port){
 	var app = express();

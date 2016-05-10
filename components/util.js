@@ -5,7 +5,7 @@ module.exports = function(port, host){
   var client = redis.createClient(port, host);
   var module = {};
 
-  module.banUser = function(duration, ip){
+  module.banUser = function(req, duration, ip){
     var deferred = q.defer();
     if(!ip) ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'] : req.connection.remoteAddress;
     if(!duration) duration = 3600;

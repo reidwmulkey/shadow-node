@@ -42,7 +42,7 @@ describe('shadow-node', function(){
 	});
 
 	it('should ban IP1 and return shadow site', function(done){
-		shadow.util.banUser(null, ip1)
+		shadow.util.banUser(null, null, ip1)
 		.then(function(){
 			request(app1)
 			.get("/")
@@ -68,7 +68,7 @@ describe('shadow-node', function(){
 	});
 
 	it('should access the regular site after the ban has expired', function(done){
-		shadow.util.banUser(1, ip2)
+		shadow.util.banUser(null, 1, ip2)
 		.then(function(){
 			setTimeout(function(){
 				request(app1)
