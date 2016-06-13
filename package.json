@@ -1,6 +1,6 @@
 {
   "name": "shadow-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "module to shadow ban users for a certain amount of time by redirecting all traffic to your shadow site",
   "main": "index.js",
   "scripts": {

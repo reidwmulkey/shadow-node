@@ -3,7 +3,9 @@ var request = require('supertest-as-promised');
 var assert = require('assert');
 var app1, app2;
 var ip1 = "::ffff:127.0.0.1", ip2 = "1.1.1.1";
-var shadow = require('../')(6379, 'localhost', require('./shadowRouter'));
+var shadow = require('../');
+shadow.createClient(6379, 'localhost');
+shadow.createShadow(require('./shadowSite'));
 
 describe('shadow-node', function(){
 	before(function(done){
@@ -81,6 +83,22 @@ describe('shadow-node', function(){
 				})
 				.catch(done);	
 			}, 1100);
+		})
+		.catch(done);
+	});
+
+	it('should allow me to use a new require("shadow") to ban the user', function(done){
+		require('../').util.banUser(null, 1, ip2)
+		.then(function(){
+			request(app1)
+			.get("/")
+			.expect(200)
+			.set('x-forwarded-for', "1.1.1.1")
+			.then(function(res) {
+				assert.equal("This is fake", res.text);
+				done();
+			})
+			.catch(done);	
 		})
 		.catch(done);
 	});

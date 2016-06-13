@@ -11,13 +11,16 @@ Install
 Usage
 -----------------
 ```
-	var shadow = require('shadow-node')(redisPort, redisHost, shadowRouter);
+	var shadow = require('shadow-node');
+	shadow.createClient(redisPort, redisHost);
+	shadow.createShadow(shadowSite);
 ```
 
-Where shadowRouter is:
+Where shadowSite is:
 ```
 	var express = require('express');
 	var router = express.Router();
+	var app = express();
 
 	router.get('/', function(req, res, next){
 		res.send('This is my shadow home page');
@@ -28,18 +31,19 @@ Where shadowRouter is:
 	});
 
 	/*
-	The rest of the routes needed for your fake site
+	The rest of the routes needed for your shadow site
 	*/
 
 	/*
 	This route is necessary. 
-	If shadowRouter doesn't catch the path the user inputs, then your application will continue onto your next route (AKA the route of your real app).
+	If shadowSite doesn't catch the path the user inputs, then your application will continue onto your next route (AKA the route of your real app).
 	*/
 	router.all('*', function(req, res, next){
 		res.status(404).send();
 	});	
 
-	module.exports = router;
+	app.use('/', router);
+	module.exports = app;
 ```
 
 

@@ -1,11 +1,11 @@
 var express = require('express');
 var utils;
 
-module.exports = function(util, shadowRouter){
+module.exports = function(util, shadowSite){
   var app = express();
   utils = util;
 
-  app.all('*', isBannedMiddleware, shadowRouter, function(req, res, next){
+  app.all('*', isBannedMiddleware, shadowSite, function(req, res, next){
     next();
   });
 

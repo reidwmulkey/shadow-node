@@ -1,8 +1,7 @@
 var redis = require('redis');
 var q = require('q');
 
-module.exports = function(port, host){
-  var client = redis.createClient(port, host);
+module.exports = function(client){
   var module = {};
 
   module.banUser = function(req, duration, ip){

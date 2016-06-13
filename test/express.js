@@ -1,7 +1,10 @@
 var express = require('express');
 var http = require('http');
-var shadowRouter = require('./shadowRouter');
-var shadow = require('../')(6379, 'localhost', shadowRouter);
+var shadowSite = require('./shadowSite');
+var shadow = require('../');
+
+shadow.createClient(6379, 'localhost');
+shadow.createShadow(shadowSite);
 
 module.exports = function(port){
 	var app = express();
