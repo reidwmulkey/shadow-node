@@ -1,5 +1,3 @@
-// var util = require('./components/util');
-// var mw = require('./components/middleware');
 var redis = require('redis');
 var q = require('q');
 var express = require('express');
